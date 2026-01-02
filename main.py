@@ -25,13 +25,16 @@ async def fetch_info(request: Request):
     if not url:
         raise HTTPException(status_code=400, detail="URL is required")
 
-    # More robust options
+    # More robust options for platform stability
     ydl_opts = {
         'quiet': True,
         'no_warnings': True,
         'format': 'best',
-        # Handle YouTube and Instagram cookie/auth issues if needed
-        # 'cookiefile': 'cookies.txt', 
+        'nocheckcertificate': True,
+        'ignoreerrors': False,
+        'logtostderr': False,
+        'no_color': True,
+        'no_check_certificate': True,
     }
 
     try:
